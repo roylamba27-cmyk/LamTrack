@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-opacity=".12"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M602 70 C565 27 510 37 504 84 C548 99 583 95 602 70Z" fill="#69bb18"/>
+    <path d="M604 72 C628 26 686 31 697 78 C656 101 625 96 604 72Z" fill="#4fae12"/>
+    <path d="M602 74 C604 102 601 123 594 141" fill="none" stroke="#3e8f12" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <text x="42" y="250" font-family="DejaVu Sans, Arial, sans-serif" font-size="166" font-weight="700" letter-spacing="-8">
+    <tspan fill="#f4f7f2">Lam</tspan><tspan fill="#65b719">Track</tspan>
+  </text>
+  <text x="600" y="340" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="20" fill="#c4ccc2">FINANCE APP</text>
+</svg>
