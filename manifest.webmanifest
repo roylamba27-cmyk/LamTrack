@@ -1,0 +1,23 @@
+{
+  "name": "LamTrack",
+  "short_name": "LamTrack",
+  "description": "LamTrack untuk mencatat, memahami, dan mengelola keuangan pribadi.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101510",
+  "theme_color": "#5db512",
+  "icons": [
+    {
+      "src": "assets/lamtrack-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/lamtrack-icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LamTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/toast.css"><link rel="preload" as="image" href="assets/lamtrack-login-logo.png">
+<meta name="theme-color" content="#5db512">
+<meta name="description" content="LamTrack untuk mencatat, memahami, dan mengelola keuangan pribadi.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/lamtrack-icon.png">
+<link rel="apple-touch-icon" sizes="512x512" href="assets/lamtrack-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="LamTrack">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<section id="auth-page" class="auth-page">
+ <div class="cute-float float-1">🦦</div><div class="cute-float float-2">🐥</div><div class="cute-float float-3">🐱</div>
+ <div class="auth-brand"><img class="login-logo login-logo-light" src="assets/lamtrack-login-logo.png" alt="LamTrack"><img class="login-logo login-logo-dark" src="assets/lamtrack-login-logo-dark.png" alt="LamTrack"></div>
+ <div class="auth-card">
+  <div class="auth-tabs"><button class="auth-tab active" data-auth="login">Masuk</button><button class="auth-tab" data-auth="register">Daftar</button></div>
+  <form id="login-form" class="auth-form"><h2>Selamat datang kembali 👋</h2><p class="muted">Masuk untuk melihat keuanganmu.</p>
+   <label>Email<input id="login-email" type="email" autocomplete="email" required placeholder="nama@email.com"></label>
+   <label>Password<div class="password-wrap"><input id="login-password" type="password" autocomplete="current-password" required minlength="6" placeholder="••••••••"><button type="button" class="password-eye" data-toggle-password="login-password">👁️</button></div></label>
+   <div class="auth-row"><button type="button" class="link-btn" data-action="forgot-password">Lupa password?</button><span class="muted">Belum punya akun?</span><button type="button" class="link-btn" data-auth-switch="register">Daftar</button></div>
+   <button class="primary full" type="submit">Masuk</button>
+  </form>
+  <form id="register-form" class="auth-form hidden"><h2>Buat akun LamTrack</h2><p class="muted">Satu akun, semua data keuanganmu.</p>
+   <label>Nama<input id="register-name" type="text" autocomplete="name" required placeholder="Nama kamu"></label>
+   <label>Email<input id="register-email" type="email" autocomplete="email" required placeholder="nama@email.com"></label>
+   <label>Password<div class="password-wrap"><input id="register-password" type="password" autocomplete="new-password" required minlength="6" placeholder="Minimal 6 karakter"><button type="button" class="password-eye" data-toggle-password="register-password">👁️</button></div></label>
+   <div class="auth-row"><span class="muted">Sudah punya akun?</span><button type="button" class="link-btn" data-auth-switch="login">Masuk</button></div>
+   <button class="primary full" type="submit">Daftar</button><small class="muted">Autentikasi dikelola oleh Supabase.</small>
+  </form>
+ </div><p class="auth-footer">Data setiap pengguna dipisahkan dengan Row Level Security.</p>
+</section>
+<div id="app" class="app hidden">
+ <aside class="sidebar"><div class="brand"><img class="brand-icon" src="assets/lamtrack-icon.png" alt="LamTrack"><span class="brand-name">LamTrack</span></div>
+  <nav>
+   <button class="nav-item active" data-page="dashboard">🏠 <span data-i18n="dashboard">Dashboard</span></button>
+   <button class="nav-item" data-page="transactions">💸 <span data-i18n="transactions">Transaksi</span><b class="nav-pill">AI</b></button>
+   <button class="nav-item" data-page="budget">🎯 <span data-i18n="budget">Budget</span></button><button class="nav-item" data-page="bills">🧾 <span data-i18n="bills">Tagihan</span></button>
+   <button class="nav-item" data-page="savings">💰 <span data-i18n="savings">Tabungan</span></button>
+   <button class="nav-item" data-page="investments">📈 <span data-i18n="investments">Investasi</span></button>
+   <button class="nav-item" data-page="accounts">🏦 <span data-i18n="accounts">Akun Finansial</span></button><button class="nav-item" data-page="assets">🏡 <span>Aset</span><b class="nav-pill asset-pill">NEW</b></button>
+   <button class="nav-item" data-page="analytics">📊 <span data-i18n="analytics">Analytics & Laporan</span><b class="nav-pill">NEW</b></button>
+   <button class="nav-item assistant-nav" data-page="assistant">🤖 <span data-i18n="assistant">Asisten LamTrack</span></button>
+  </nav>
+  <div class="sidebar-bottom"><button class="profile-nav" data-page="settings"><span id="sidebar-avatar" class="sidebar-avatar">U</span><span class="profile-nav-copy"><b id="sidebar-name">Profil</b><small>Akun & pengaturan</small></span><span class="profile-nav-chevron">›</span></button><button id="logout-btn" class="nav-item danger">↪ <span>Keluar</span></button></div>
+ </aside><button id="sidebar-overlay" class="mobile-sidebar-overlay" aria-label="Tutup menu"></button>
+ <main class="main"><header class="topbar"><button id="mobile-menu" class="icon-btn">☰</button><div><h2 id="page-title">Dashboard</h2><p id="page-subtitle" class="muted">Ringkasan keuanganmu</p></div><div class="top-actions"><div id="filter-controls" class="filter-controls"><select id="filter-type" class="select"><option value="month">Per bulan</option><option value="year">Per tahun</option><option value="all">Semua waktu</option></select><select id="filter-period" class="select"></select></div><div class="notification-wrap"><button id="notification-btn" class="notification-btn" aria-label="Notifikasi">🔔<span id="notification-count" class="notification-count">0</span></button><div id="notification-popover" class="notification-popover"></div></div><button id="user-chip" class="user-chip" data-action="profile-menu">U</button></div></header><div id="content" class="content"></div><button id="quick-add" class="quick-add" data-action="add-transaction">＋<span>Transaksi</span></button></main>
+</div>
+<div id="modal" class="modal hidden"><div class="modal-backdrop" data-close-modal></div><div class="modal-card"><div class="modal-head"><h3 id="modal-title">Tambah</h3><button class="icon-btn" data-close-modal>×</button></div><div id="modal-body"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/config.js"></script><script src="js/app.js"></script>
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=25.4.4.3.3-logo-revised').catch(()=>{}))}
+</script>
+
+</body></html>
